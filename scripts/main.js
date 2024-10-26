@@ -25,8 +25,8 @@ async function open_terminal() {
   await delay(1500);
   createText("You can now run several commands to navigate through the portfolio.");
 
-  createCode("about", "Who am i and what do i do.");
   createCode("help", "See all commands.");
+  createCode("about", "Who am i and what do i do.");
   createCode("connect", "All my social networks.");
 
   await delay(500);
@@ -66,9 +66,10 @@ async function getInputValue() {
     createCode("tools", "My Tech Stack.");
     createCode(
       "projects",
-      "My github collection with projects. Follow me there :D"
+      "My github collection with projects."
     );
-    createCode("connect", "All my social networks.");
+    createCode("connect", "All my social networks. Follow me there :D");
+    createCode("date", "gives the current date and time.");
     createCode("clear", "Clean the terminal.");
 
   } else if (value === "projects") {
@@ -84,10 +85,7 @@ async function getInputValue() {
     );
   } else if (value === "tools") {
     trueValue(value);
-    createText("<i class='fab fa-2x fa-html5 white'></i> <i class='fab fa-2x fa-css3 white'><i class='fab fa-md fa-js-square white mi'></i></i><i class='fab fa-2x fa-react white mi'></i><i class='fab fa-2x mi fa-node white'></i><i class='fab fa-2x fa-npm mi white'></i><i class='fab fa-2x mi fa-python white'></i><i class='fab fa-2x fa-git-alt mi white'></i><i class='fab fa-2x fa-linux mi white'></i><i class='fab fa-2x fa-ubuntu mi white'></i><i class='fab fa-2x fa- mi white'></i>");
-    createText(
-      ""
-    );
+    createText("<i class='fab fa-2x fa-html5 white'></i> <i class='fab fa-2x fa-css3 white'><i class='fab fa-md fa-js-square white mi'></i></i><i class='fab fa-2x fa-react white mi'></i><i class='fab fa-2x mi fa-node white'></i><i class='fab fa-2x fa-npm mi white'></i><i class='fab fa-2x mi fa-python white'></i><i class='fab fa-2x fa-git-alt mi white'></i><i class='fab fa-2x fa-linux mi white'></i><i class='fab fa-2x fa-ubuntu mi white'></i><i class='fab fa-2x fa- mi white'></i> ");
   } else if (value === "connect") {
     trueValue(value);
     createText(
@@ -102,6 +100,22 @@ async function getInputValue() {
   } else if (value === "social") {
     trueValue(value);
     createText("Didn't you mean: social -a?");
+  } else if (value === "date") {
+    trueValue(value);
+    const now = new Date();
+    const options = { 
+      weekday: 'short', 
+      year: 'numeric', 
+      month: 'short', 
+      day: 'numeric', 
+      hour: 'numeric', 
+      minute: 'numeric', 
+      second: 'numeric', 
+      hour12: true, 
+      timeZone: 'Asia/Kolkata'
+    };
+    const formattedDate = now.toLocaleString('en-US', options);
+    createText(`${formattedDate}`);
   } else if (value === "clear") {
     document.querySelectorAll("p").forEach((e) => e.parentNode.removeChild(e));
     document
