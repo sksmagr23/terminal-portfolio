@@ -25,7 +25,7 @@ async function open_terminal() {
   await delay(1500);
   createText("You can now run several commands to navigate through the portfolio.");
 
-  createCode("help", "See all commands.");
+  createCode("help", "See all commands in my server.");
   createCode("about", "Who am i and what do i do.");
   createCode("connect", "All my social networks.");
 
@@ -66,16 +66,29 @@ async function getInputValue() {
     createCode("tools", "My Tech Stack.");
     createCode(
       "projects",
-      "My github collection with projects."
+      "My dev projects, leave a star if you like them ;)"
     );
+    createCode("stats", "My Github contri stats :)");
     createCode("connect", "All my social networks. Follow me there :D");
-    createCode("date", "gives the current date and time.");
+    createCode("date", "Gives the current date and time.");
     createCode("clear", "Clean the terminal.");
 
   } else if (value === "projects") {
     trueValue(value);
     createText(
-      "<a href='https://github.com/sksmagr23' target='_blank'>Find them on <i class='fab fa-github white'></i> github.com/sksmagr23</a>"
+      "<a href='https://weather-goapi.netlify.app/' target='_blank' class='proj'>⁍ GO Weather API</a>"
+    );
+    createText(
+      "<a href='https://codeexchange-3s2g.onrender.com/' target='_blank' class='proj'>⁍ CodeExchange (Prototype of stack overflow)</a>"
+    );
+    createText(
+      "<a href='https://todo-react-app-five-kappa.vercel.app/' target='_blank' class='proj'>⁍ TODO App</a>"
+    );
+    createText(
+      "<a href='https://github.com/sksmagr23/restaurant-service' target='_blank' class='proj'>⁍ Restaurant E-commerce (using django)</a>"
+    );
+    createText(
+      "Find many more contribs on <a href='https://github.com/sksmagr23' target='_blank' class='proj'><i class='devicon-github-original mi1 fa-x'></i></a>"
     );
   } else if (value === "about") {
     trueValue(value);
@@ -85,17 +98,20 @@ async function getInputValue() {
     );
   } else if (value === "tools") {
     trueValue(value);
-    createText("<i class='fab fa-2x fa-html5 white'></i> <i class='fab fa-2x fa-css3 white'><i class='fab fa-md fa-js-square white mi'></i></i><i class='fab fa-2x fa-react white mi'></i><i class='fab fa-2x mi fa-node white'></i><i class='fab fa-2x fa-npm mi white'></i><i class='fab fa-2x mi fa-python white'></i><i class='fab fa-2x fa-git-alt mi white'></i><i class='fab fa-2x fa-linux mi white'></i><i class='fab fa-2x fa-ubuntu mi white'></i><i class='fab fa-2x fa- mi white'></i> ");
+    createText("<i class='fab fa-2x fa-html5 white'></i> <i class='fab fa-12x devicon-css3-plain white mi1'><i class='fab fa-md fa-js-square white mi'></i></i><i class='fab fa-2x fa-react white mi'></i><i class='fab fa-2x mi fa-node white'></i><i class='fab fa-2x mi fa-python white'></i><i class='devicon-go-plain fa-2x fab mi'></i><i class='devicon-cplusplus-plain fa-2x fab mi'></i><i class='fab fa-2x fa-git-alt mi white'></i><i class='fab fa-2x fa-linux mi white'></i>");
+  } else if (value === "stats") {
+    trueValue(value);
+    createText("<img src=https://github-readme-stats.vercel.app/api?username=sksmagr23&count_private=true&show_icons=true&theme=dark&hide_border=true&hide_rank=true&include_all_commits=true&show=prs_merged_percentage&hide_title=true&text_color=ffffff></img>");
   } else if (value === "connect") {
     trueValue(value);
     createText(
-      "<a href='https://github.com/sksmagr23' target='_blank'><i class='fab fa-github white'></i> github.com/sksmagr23</a>"
+      "<a href='https://github.com/sksmagr23' target='_blank' class='link'><i class='fab fa-github'></i> github.com/sksmagr23</a>"
     );
     createText(
-      "<a href='https://www.linkedin.com/in/saksham-agrawal-a10387286/' target='_blank'><i class='fab fa-linkedin-in white'></i> linkedin.com/in/saksham-agrawal</a>"
+      "<a href='https://www.linkedin.com/in/saksham-agrawal-a10387286/' target='_blank' class='link1'><i class='fab fa-linkedin-in'></i> linkedin.com/in/saksham-agrawal</a>"
     );
     createText(
-      "<a href='https://www.instagram.com/saksham_verse_24/' target='_blank'><i class='fab fa-instagram white'></i> instagram.com/saksham_verse_24</a>"
+      "<a href='https://www.instagram.com/saksham_verse_24/' target='_blank' class='link2'><i class='fab fa-instagram'></i> instagram.com/saksham_verse_24</a>"
     );
   } else if (value === "social") {
     trueValue(value);
