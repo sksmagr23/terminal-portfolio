@@ -28,7 +28,6 @@ a {
 body {
   background-color: rgb(40, 40, 40);
   height: 100vh;
-  font-family: "Roboto", monospace;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -96,13 +95,13 @@ div.title {
   color: #8e8e8e;
 }
 .link1:hover{
-  color: #003cff;
+  color: #e7a33e;
 }
 .link2:hover{
   color: #ff2877;
 }
 .proj:hover{
-  color: #00d285;
+  color: #00ff00;
 }
 @media (max-width: 500px) {
   .buttons-flex {

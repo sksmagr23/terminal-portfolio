@@ -72,7 +72,7 @@ async function getInputValue() {
     createCode("connect", "All my social networks. Follow me there :D");
     createCode("date", "Gives the current date and time.");
     createCode("clear", "Clean the terminal.");
-
+    
   } else if (value === "projects") {
     trueValue(value);
     createText(
@@ -86,6 +86,9 @@ async function getInputValue() {
     );
     createText(
       "<a href='https://github.com/sksmagr23/restaurant-service' target='_blank' class='proj'>⁍ Restaurant E-commerce (using django)</a>"
+    );
+    createText(
+      "<a href='https://discord.com/oauth2/authorize?client_id=1316247901420126218' target='_blank' class='proj'>⁍ A discord bot (⁠•⁠_⁠•⁠) created by me </a> ,hope you use it"
     );
     createText(
       "Find many more contribs on <a href='https://github.com/sksmagr23' target='_blank' class='proj'><i class='devicon-github-original mi1 fa-x'></i></a>"
