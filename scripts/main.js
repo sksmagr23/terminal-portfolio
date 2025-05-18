@@ -18,16 +18,17 @@ app.addEventListener("click", function (event) {
 });
 
 async function open_terminal() {
-  await delay(200)
+  await delay(200);
   createText("Holla! welcome to my command line");
-  await delay(700);
-  createText("Starting Portfolio server...");
+  await delay(500);
+  createText("Starting server...");
   await delay(1500);
-  createText("You can now run several commands to navigate through the portfolio.");
+  createText(
+    "You can now run several commands to navigate through the portfolio."
+  );
 
-  createCode("help", "See all commands in my server.");
-  createCode("about", "Who am i and what do i do.");
-  createCode("connect", "All my social networks.");
+  createCode("help", "List of all commands in my server.");
+  createCode("about", "About the developer.");
 
   await delay(500);
   new_line();
@@ -64,15 +65,11 @@ async function getInputValue() {
 
     createCode("about", "Who am i and what do i do.");
     createCode("tools", "My Tech Stack.");
-    createCode(
-      "projects",
-      "My dev projects, leave a star if you like them ;)"
-    );
+    createCode("projects", "My dev projects, leave a star if you like them ;)");
     createCode("stats", "My Github contri stats :)");
     createCode("connect", "All my social networks. Follow me there :D");
     createCode("date", "Gives the current date and time.");
     createCode("clear", "Clean the terminal.");
-    
   } else if (value === "projects") {
     trueValue(value);
     createText(
@@ -91,20 +88,45 @@ async function getInputValue() {
       "<a href='https://discord.com/oauth2/authorize?client_id=1316247901420126218' target='_blank' class='proj'>⁍ A discord bot (⁠•⁠_⁠•⁠) created by me </a> ,hope you use it"
     );
     createText(
-      "Find many more contribs on <a href='https://github.com/sksmagr23' target='_blank' class='proj'><i class='devicon-github-original mi1 fa-x'></i></a>"
+      "<a href='https://shannonntpc.vercel.app/' target='_blank' class='proj'>⁍ Ai-powered Renewable Energy Prediction system</a>"
+    );
+    createText(
+      "Find source code & many more contribs on <a href='https://github.com/sksmagr23' target='_blank' class='proj'><i class='devicon-github-original mi1 fa-x'></i></a>"
     );
   } else if (value === "about") {
     trueValue(value);
-    createText("Hey there! 👋 I’m <strong>Saksham Agrawal</strong>, Sophomore at IIT (BHU) Varanasi with an endless curiosity for web development. From designing intuitive user experiences to engineering powerful backends, I’m all about bringing the best of both worlds to life :D");
-    createText(
-      "When I’m not coding, you’ll probably find me exploring the latest tech trends, figuring out how to break and rebuild things just for fun . I’m always excited to collaborate on cool projects, brainstorm wild ideas, and turn them into something real and impactful. So, if you’re into pushing boundaries, let’s connect and create something epic together! 💡💻"
-    );
+    const aboutContainer1 = document.createElement("p");
+    const aboutContainer2 = document.createElement("p");
+    app.appendChild(aboutContainer1);
+    app.appendChild(aboutContainer2);
+
+    new Typed(aboutContainer1, {
+      strings: [
+        "Hey there! 👋 I'm <strong>Saksham Agrawal</strong>, Sophomore at IIT (BHU) Varanasi with an endless curiosity for web development. From designing intuitive user experiences to engineering powerful backends, I'm all about bringing the best of both worlds to life :D",
+      ],
+      typeSpeed: 20,
+      showCursor: false,
+      onComplete: () => {
+        new Typed(aboutContainer2, {
+          strings: [
+            "When I'm not coding, you'll probably find me exploring the latest tech trends, figuring out how to break and rebuild things just for fun . I'm always excited to collaborate on cool projects, brainstorm wild ideas, and turn them into something real and impactful. So, if you're into pushing boundaries, let's connect and create something epic together! 💡💻",
+          ],
+          typeSpeed: 20,
+          showCursor: true,
+          cursorChar: "_",
+        });
+      },
+    });
   } else if (value === "tools") {
     trueValue(value);
-    createText("<i class='fab fa-2x fa-html5 white'></i> <i class='fab fa-12x devicon-css3-plain white mi1'><i class='fab fa-md fa-js-square white mi'></i></i><i class='fab fa-2x fa-react white mi'></i><i class='fab fa-2x mi fa-node white'></i><i class='fab fa-2x mi fa-python white'></i><i class='devicon-go-plain fa-2x fab mi'></i><i class='devicon-cplusplus-plain fa-2x fab mi'></i><i class='fab fa-2x fa-git-alt mi white'></i><i class='fab fa-2x fa-linux mi white'></i>");
+    createText(
+      "<i class='fab g fa-2x fa-html5 white'></i> <i class='fab g fa-12x devicon-css3-plain white mi1'><i class='fab g fa-md fa-js-square white mi'></i></i><i class='fab g fa-2x fa-react white mi'></i><i class='devicon-nextjs-original-wordmark g fa-2x fab mi'></i><i class='fab g fa-2x mi fa-node white'></i><i class='fab g fa-2x mi fa-python white'></i><i class='devicon-go-plain fa-2x g fab mi'></i><i class='devicon-cplusplus-plain g fa-2x fab mi'></i><i class='fab fa-2x g fa-git-alt mi white'></i><i class='fab g fa-2x fa-linux mi white'></i>"
+    );
   } else if (value === "stats") {
     trueValue(value);
-    createText("<img src=https://github-readme-stats.vercel.app/api?username=sksmagr23&count_private=true&show_icons=true&theme=dark&hide_border=true&hide_rank=true&include_all_commits=true&show=prs_merged_percentage&hide_title=true&text_color=ffffff></img>");
+    createText(
+      "<img src=https://github-readme-stats.vercel.app/api?username=sksmagr23&count_private=true&show_icons=true&theme=ocean_dark&hide_border=true&hide_rank=true&include_all_commits=true&show=prs_merged_percentage&hide_title=true&bg_color=45,151414,151414></img>"
+    );
   } else if (value === "connect") {
     trueValue(value);
     createText(
@@ -122,18 +144,18 @@ async function getInputValue() {
   } else if (value === "date") {
     trueValue(value);
     const now = new Date();
-    const options = { 
-      weekday: 'short', 
-      year: 'numeric', 
-      month: 'short', 
-      day: 'numeric', 
-      hour: 'numeric', 
-      minute: 'numeric', 
-      second: 'numeric', 
-      hour12: true, 
-      timeZone: 'Asia/Kolkata'
+    const options = {
+      weekday: "short",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      hour12: true,
+      timeZone: "Asia/Kolkata",
     };
-    const formattedDate = now.toLocaleString('en-US', options);
+    const formattedDate = now.toLocaleString("en-US", options);
     createText(`${formattedDate}`);
   } else if (value === "clear") {
     document.querySelectorAll("p").forEach((e) => e.parentNode.removeChild(e));
