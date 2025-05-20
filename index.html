@@ -48,10 +48,13 @@
     });
     
     document.querySelector('.button.green').addEventListener('click', function() {
-      if (document.fullscreenElement) {
-        document.exitFullscreen();
+      const container = document.querySelector('.container');
+      if (container.style.maxWidth === '900px' && container.style.height === '700px') {
+        container.style.maxWidth = '100vw';
+        container.style.height = '100vh';
       } else {
-        document.documentElement.requestFullscreen();
+        container.style.maxWidth = '900px';
+        container.style.height = '700px';
       }
     });
   </script>
