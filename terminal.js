@@ -6,16 +6,16 @@ let terminalPrefix = "sksmagr23";
 let currentTheme = "dark";
 const themes = {
   dark: {
-    background: "#151414",
-    text: "#eeeeee",
-    success: "#34ff34",
-    error: "#ed1400",
+    background: "#121212",
+    text: "#f8f8f8",
+    success: "#29ff29",
+    error: "#ff3333",
     code: "#00aefe",
-    prompt: "#34ff34",
-    secondary: "#34ff34",
+    prompt: "#29ff29",
+    secondary: "#29ff29",
   },
   hacker: {
-    background: "#000000",
+    background: "#0d0d0d",
     text: "#00ff00",
     success: "#00ff00",
     error: "#ff0000",
@@ -24,14 +24,23 @@ const themes = {
     secondary: "#ffff00",
   },
   retro: {
-    background: "#2E2E2E",
-    text: "#ff8800",
+    background: "#2b2b2b",
+    text: "#ffa94d",
     success: "#ffa500",
     error: "#ff0000",
     code: "#ffcc00",
     prompt: "#ffa500",
     secondary: "#ffdd00",
   },
+  cyberpunk: {
+    background: "#0c0335",
+    text: "#F000FF",
+    success: "#01CDFE",
+    error: "#FF0000",
+    code: "#01CDFE",
+    prompt: "#F000FF",
+    secondary: "#FB0094",
+  }
 };
 
 app.addEventListener("keydown", async function (event) {
@@ -288,13 +297,13 @@ async function getInputValue() {
         createText(`Switched to ${requestedTheme} theme.`);
       } else {
         createText(
-          `Theme '${requestedTheme}' not found. Available themes: dark, hacker, retro`,
+          `Theme '${requestedTheme}' not found. Available themes: dark, hacker, retro, cyberpunk`,
           "error"
         );
       }
     } else {
       createText(
-        "Usage: theme [name]. Available themes: dark, hacker, retro"
+        "Usage: theme [name]. Available themes: dark, hacker, retro, cyberpunk"
       );
     }
   } else if (command === "echo") {
