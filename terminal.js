@@ -2,26 +2,40 @@ const app = document.querySelector("#app");
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 const commandHistory = [];
 let historyIndex = -1;
-let terminalPrefix = "sksmagr23";
+let terminalPrefix = "sksm_agr";
 let currentTheme = "dark";
 const themes = {
   dark: {
-    background: "#121212",
+    background: "#191919",
     text: "#f8f8f8",
     success: "#29ff29",
-    error: "#ff3333",
-    code: "#00aefe",
-    prompt: "#29ff29",
-    secondary: "#29ff29",
+    error: "#ff1b33",
+    code: "#0bb0fe",
+    prompt: "#0ef36a",
+    secondary: "#9efd9f",
+    banner: "#29ff29",
+    githubStats: "#151414",
+    link: "#4ad0fd",
+    linkHover: "#29ff29",
+    inputBackground: "#1b1b1b",
+    border: "#333333",
+    selection: "#264f78",
   },
   hacker: {
-    background: "#0d0d0d",
+    background: "#0b0b0b",
     text: "#00ff00",
     success: "#00ff00",
     error: "#ff0000",
     code: "#00ffff",
     prompt: "#00ff00",
     secondary: "#ffff00",
+    banner: "#00ff00",
+    githubStats: "#0a0a0a",
+    link: "#00ff00",
+    linkHover: "#66ff66",
+    inputBackground: "#0f1c0f",
+    border: "#005000",
+    selection: "#003300",
   },
   retro: {
     background: "#2b2b2b",
@@ -31,6 +45,13 @@ const themes = {
     code: "#ffcc00",
     prompt: "#ffa500",
     secondary: "#ffdd00",
+    banner: "#ffa500",
+    githubStats: "#232323",
+    link: "#ff8800",
+    linkHover: "#ffaa33",
+    inputBackground: "#353535",
+    border: "#494949",
+    selection: "#705237",
   },
   cyberpunk: {
     background: "#0c0335",
@@ -40,6 +61,29 @@ const themes = {
     code: "#01CDFE",
     prompt: "#F000FF",
     secondary: "#FB0094",
+    banner: "#01CDFE",
+    githubStats: "#07021f",
+    link: "#00FFF0",
+    linkHover: "#60FFFA",
+    inputBackground: "#150650",
+    border: "#FB0094",
+    selection: "#3d0862",
+  },
+  ubuntu: {
+    background: "#2c001e",
+    text: "#ffffff",
+    success: "#8AE234",
+    error: "#FF5252",
+    code: "#729FCF",
+    prompt: "#006dff",
+    secondary: "#F9F9F9",
+    banner: "#F9F9F9",
+    githubStats: "#300a24",
+    link: "#F5C211",
+    linkHover: "#FFDB66",
+    inputBackground: "#3a0029",
+    border: "#006dff",
+    selection: "#77216F",
   }
 };
 
@@ -55,8 +99,16 @@ app.addEventListener("keydown", async function (event) {
       commandHistory.push(value);
       historyIndex = commandHistory.length;
     }
-    getInputValue();
-    removeInput();
+
+    const terminalLine = document.querySelector(".terminal-line");
+    const inputContainer = terminalLine.querySelector(".input-container");
+    inputContainer.removeChild(input);
+
+    inputContainer.innerHTML += value;
+    terminalLine.classList.remove("terminal-line");
+    terminalLine.classList.add("command-history-line");
+
+    await processCommand(value);
     await delay(100);
     new_line();
   } else if (event.key === "ArrowUp") {
@@ -117,55 +169,124 @@ function autocomplete(value) {
 async function open_terminal() {
   setTheme(currentTheme);
   await delay(200);
-  createBanner();
-  await delay(500);
-  createText("Starting terminal server...");
-  await delay(1000);
-  createText("Server online. Type 'help' to see list of available commands.");
-  await delay(500);
+  await createAnimatedBanner();
+  await delay(300);
+  await typeText("Starting terminal server...");
+
+  const loadingP = document.createElement("p");
+  loadingP.innerHTML = "<span class='loading-indicator'></span>";
+  app.appendChild(loadingP);
+  await delay(600);
+  app.removeChild(loadingP);
+
+  await typeText(
+    "<span class='success-text'>Server online.</span> Type 'help' to see list of available commands."
+  );
+  await delay(300);
   new_line();
 }
 
-function createBanner() {
-  const banner = `
-   _____       _        _                    _____                      _   
-  / ____|     | |      | |                  / ____|                    | |  
- | (___   __ _| | _____| |__   __ _ _ __ _  | |     ___  _ __  ___  ___| | ___
-  \\___ \\ / _\` | |/ / __| '_ \\ / _\` | '_ (_) | |    / _ \\| '_ \\/ __|/ _ \\ |/ _ \\
-  ____) | (_| |   < (__| | | | (_| | | | |  | |___| (_) | | | \\__ \\  __/ |  __/
- |_____/ \\__,_|_|\\_\\___|_| |_|\\__,_|_| |_|   \\_____\\___/|_| |_|___/\\___|_|\\___|
-                                                                                
-  v2025.0                                                           Type 'help'
-`;
-
-  const p = document.createElement("pre");
-  p.style.color = themes[currentTheme].success;
-  p.textContent = banner;
+async function typeText(text) {
+  const p = document.createElement("p");
   app.appendChild(p);
+
+  return new Promise((resolve) => {
+    let i = 0;
+    const speed = 60;
+
+    function type() {
+      if (i < text.length) {
+        p.innerHTML = text.substring(0, i + 1);
+        i++;
+        setTimeout(type, speed);
+      } else {
+        resolve();
+      }
+    }
+
+    type();
+    app.scrollTop = app.scrollHeight;
+  });
+}
+
+async function createAnimatedBanner() {
+  const bannerLines = [
+    "   _____       _        _                    _____                      _   ",
+    "  / ____|     | |      | |                  / ____|                    | |  ",
+    " | (___   __ _| | _____| |__   __ _ _ __ _  | |     ___  _ __  ___  ___| | ___",
+    "  \\___ \\ / _` | |/ / __| '_ \\ / _` | '_ (_) | |    / _ \\| '_ \\/ __|/ _ \\ |/ _ \\",
+    "  ____) | (_| |   < (__| | | | (_| | | | |  | |___| (_) | | | \\__ \\  __/ |  __/",
+    " |_____/ \\__,_|_|\\_\\___|_| |_|\\__,_|_| |_|   \\_____\\___/|_| |_|___/\\___|_|\\___|",
+    "                                                                                ",
+    "  v2025.0                                                           Type 'help'",
+  ];
+
+  const bannerContainer = document.createElement("div");
+  bannerContainer.style.marginBottom = "15px";
+  app.appendChild(bannerContainer);
+
+  const baseColor = themes[currentTheme].banner;
+  const secondaryColor = themes[currentTheme].secondary;
+
+  for (let i = 0; i < bannerLines.length; i++) {
+    const p = document.createElement("p");
+    p.style.margin = "0";
+    p.style.padding = "0";
+    p.style.lineHeight = "1.2";
+    p.style.fontFamily = "monospace";
+    p.style.whiteSpace = "pre";
+    p.style.overflow = "hidden";
+    p.style.opacity = "0";
+    p.style.color = i % 2 === 0 ? baseColor : secondaryColor;
+    p.textContent = bannerLines[i];
+    bannerContainer.appendChild(p);
+
+    await delay(100);
+    p.style.transition = "opacity 0.3s ease-in-out";
+    p.style.opacity = "1";
+  }
+
+  const cursor = document.createElement("div");
+  cursor.innerHTML = "<span class='cursor'>|</span>";
+  app.appendChild(cursor);
+  await delay(500);
+  app.removeChild(cursor);
 }
 
 function new_line() {
-  const p = document.createElement("p");
-  const span1 = document.createElement("span");
-  const span2 = document.createElement("span");
-  p.setAttribute("class", "path");
-  p.textContent = `$ ${terminalPrefix}`;
-  span1.textContent = "@";
-  span2.textContent = "portfolio";
-  p.appendChild(span1);
-  p.appendChild(span2);
-  app.appendChild(p);
-
   const div = document.createElement("div");
-  div.setAttribute("class", "type");
+  div.setAttribute("class", "terminal-line");
+
+  const promptSpan = document.createElement("span");
+  promptSpan.setAttribute("class", "path");
+  promptSpan.textContent = `${terminalPrefix}`;
+
+  const span1 = document.createElement("span");
+  span1.textContent = "@";
+
+  const span2 = document.createElement("span");
+  span2.textContent = "terminal_portfolio";
+
+  promptSpan.appendChild(span1);
+  promptSpan.appendChild(span2);
+
+  const inputContainer = document.createElement("span");
+  inputContainer.setAttribute("class", "input-container");
+
   const i = document.createElement("i");
-  i.setAttribute("class", "fas fa-angle-right icone");
+  i.textContent = ":~$ ";
+  i.setAttribute("class", "icone");
+
   const input = document.createElement("input");
   input.setAttribute("autocomplete", "off");
   input.setAttribute("spellcheck", "false");
   input.id = "terminal-input";
-  div.appendChild(i);
-  div.appendChild(input);
+
+  div.appendChild(promptSpan);
+  inputContainer.appendChild(i);
+  inputContainer.appendChild(input);
+  div.appendChild(inputContainer);
+
   app.appendChild(div);
   input.focus();
 
@@ -173,20 +294,15 @@ function new_line() {
 }
 
 function removeInput() {
-  const div = document.querySelector(".type");
-  if (div) app.removeChild(div);
+  const terminalLine = document.querySelector(".terminal-line");
+  if (terminalLine) app.removeChild(terminalLine);
 }
 
-async function getInputValue() {
-  const input = document.querySelector("input");
-  if (!input) return;
-
-  const value = input.value.trim();
+async function processCommand(value) {
   const args = value.split(" ");
   const command = args[0].toLowerCase();
 
   if (command === "help") {
-    trueValue(value);
     createText("Available commands:");
     createCode("about", "Who am I and what do I do.");
     createCode("tools", "My Tech Stack.");
@@ -199,8 +315,11 @@ async function getInputValue() {
     createCode("theme", "Change terminal theme");
     createCode("echo", "Repeat whatever you type after the command.");
     createCode("clear", "Clean the terminal.");
+    createText("\nKeyboard shortcuts:");
+    createText("↑ : Navigate to previous commands");
+    createText("↓ : Navigate to next commands");
+    createText("Tab: Autocomplete commands");
   } else if (command === "projects") {
-    trueValue(value);
     createText(
       "<a href='https://weather-goapi.netlify.app/' target='_blank' class='proj'>⁍ GO Weather API</a> - A weather application using Go backend"
     );
@@ -223,7 +342,6 @@ async function getInputValue() {
       "Find source code & many more contribs on <a href='https://github.com/sksmagr23' target='_blank' class='proj'><i class='devicon-github-original mi1 fa-x'></i> GitHub</a>"
     );
   } else if (command === "about") {
-    trueValue(value);
     const aboutContainer1 = document.createElement("p");
     const aboutContainer2 = document.createElement("p");
     app.appendChild(aboutContainer1);
@@ -231,7 +349,7 @@ async function getInputValue() {
 
     new Typed(aboutContainer1, {
       strings: [
-        "Hey there! 👋 I'm <strong>Saksham Agrawal</strong>, Sophomore at IIT (BHU) Varanasi with an endless curiosity for web development. From designing intuitive user experiences to engineering powerful backends, I'm all about bringing the best of both worlds to life :D",
+        "Hey there! 👋 I'm <strong>Saksham Agrawal</strong>, Pre-Final Year at IIT (BHU) Varanasi with an endless curiosity for web development. From designing intuitive user experiences to engineering powerful backends, I'm all about bringing the best of both worlds to life :D",
       ],
       typeSpeed: 20,
       showCursor: false,
@@ -246,19 +364,22 @@ async function getInputValue() {
       },
     });
   } else if (command === "tools") {
-    trueValue(value);
     createText("My tech stack:");
     createText(
       "<div class='tech-stack'><i class='fab g fa-2x fa-html5 white' title='HTML5'></i> <i class='fab g fa-12x devicon-css3-plain white mi1' title='CSS3'></i><i class='fab g fa-12x fa-js-square white mi' title='JavaScript'></i><i class='fab g fa-2x fa-react white mi' title='React'></i><i class='devicon-nextjs-original-wordmark g fa-2x fab mi' title='Next.js'></i><i class='fab g fa-2x mi fa-node white' title='Node.js'></i><i class='fab g fa-2x mi fa-python white' title='Python'></i><i class='devicon-go-plain fa-2x g fab mi' title='Go'></i><i class='devicon-cplusplus-plain g fa-2x fab mi' title='C++'></i><i class='fab fa-2x g fa-git-alt mi white' title='Git'></i><i class='fab g fa-2x fa-linux mi white' title='Linux'></i></div>"
     );
   } else if (command === "stats") {
-    trueValue(value);
     createText("GitHub Stats:");
     createText(
-      "<img class='github-stats' src=https://github-readme-stats.vercel.app/api?username=sksmagr23&count_private=true&show_icons=true&theme=ocean_dark&hide_border=true&hide_rank=true&include_all_commits=true&show=prs_merged_percentage&hide_title=true&text_color=00ff00&bg_color=45,151414,151414></img>"
+      `<img class='github-stats' src=https://github-readme-stats.vercel.app/api?username=sksmagr23&count_private=true&show_icons=true&hide_border=true&hide_rank=true&include_all_commits=true&show=prs_merged_percentage&hide_title=true&text_color=${themes[currentTheme].success.replace(
+        "#",
+        ""
+      )}&bg_color=45,${themes[currentTheme].githubStats.replace("#", "")},${themes[currentTheme].githubStats.replace(
+        "#",
+        ""
+      )}></img>`
     );
   } else if (command === "connect") {
-    trueValue(value);
     createText(
       "<a href='https://github.com/sksmagr23' target='_blank' class='link'><i class='fab fa-github'></i> github.com/sksmagr23</a>"
     );
@@ -269,7 +390,6 @@ async function getInputValue() {
       "<a href='https://www.instagram.com/saksham_verse_24/' target='_blank' class='link2'><i class='fab fa-instagram'></i> instagram.com/saksham_verse_24</a>"
     );
   } else if (command === "date") {
-    trueValue(value);
     const now = new Date();
     const options = {
       weekday: "short",
@@ -286,10 +406,12 @@ async function getInputValue() {
     createText(`Current time: ${formattedDate} (IST)`);
   } else if (command === "clear") {
     document
-      .querySelectorAll("p, section, pre")
+      .querySelectorAll("p, section, pre, .command-history-line")
       .forEach((e) => e.parentNode.removeChild(e));
+
+    commandHistory.length = 0;
+    historyIndex = -1;
   } else if (command === "theme") {
-    trueValue(value);
     if (args.length > 1) {
       const requestedTheme = args[1].toLowerCase();
       if (themes[requestedTheme]) {
@@ -297,17 +419,16 @@ async function getInputValue() {
         createText(`Switched to ${requestedTheme} theme.`);
       } else {
         createText(
-          `Theme '${requestedTheme}' not found. Available themes: dark, hacker, retro, cyberpunk`,
+          `Theme '${requestedTheme}' not found. Available themes: dark, hacker, retro, cyberpunk, ubuntu`,
           "error"
         );
       }
     } else {
       createText(
-        "Usage: theme [name]. Available themes: dark, hacker, retro, cyberpunk"
+        "Usage: theme [name]. Available themes: dark, hacker, retro, cyberpunk, ubuntu"
       );
     }
   } else if (command === "echo") {
-    trueValue(value);
     const message = args.slice(1).join(" ");
     if (message) {
       createText(message);
@@ -315,7 +436,6 @@ async function getInputValue() {
       createText("Usage: echo [message]");
     }
   } else if (command === "education") {
-    trueValue(value);
     createText(`
 <div class="education-item">
   <div class="edu-year">2023 - Present</div>
@@ -332,8 +452,7 @@ async function getInputValue() {
   </div>
 </div>
     `);
-  }  else if (command === "resume") {
-    trueValue(value);
+  } else if (command === "resume") {
     createText("My Resume:");
     createText(`
   <div class="resume-section">
@@ -342,7 +461,6 @@ async function getInputValue() {
     `);
   } else if (value === "") {
   } else {
-    falseValue(value);
     createText(
       `Command not found: ${value}. Run 'help' for available commands.`,
       "error"
@@ -362,6 +480,16 @@ function setTheme(theme) {
   root.style.setProperty("--code-color", themes[theme].code);
   root.style.setProperty("--prompt-color", themes[theme].prompt);
   root.style.setProperty("--secondary-color", themes[theme].secondary);
+  root.style.setProperty("--banner-color", themes[theme].banner);
+  root.style.setProperty("--github-stats-color", themes[theme].githubStats);
+  root.style.setProperty("--link-color", themes[theme].link);
+  root.style.setProperty("--link-hover-color", themes[theme].linkHover);
+  root.style.setProperty(
+    "--input-background-color",
+    themes[theme].inputBackground
+  );
+  root.style.setProperty("--border-color", themes[theme].border);
+  root.style.setProperty("--selection-color", themes[theme].selection);
 
   document.querySelector("#app").style.backgroundColor =
     themes[theme].background;

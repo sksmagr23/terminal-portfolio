@@ -12,7 +12,13 @@
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
     <link href="styles/all.css" rel="stylesheet" />
     <link rel="stylesheet" href="styles/main.css" />
-    <title>My-Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Fira+Code:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Terminal Portfolio</title>
   </head>
   <body>
     <div class="container">
@@ -23,40 +29,47 @@
           <div class="button green"></div>
         </div>
         <div class="title">
-          <a href="https://github.com/sksmagr23" target="_blank"
-            ><h1><i class="fab fa-github"></i> sksmagr23</h1></a
-          >
+          <h1>sksm_agr@terminal</h1>
         </div>
       </div>
       <div id="app"></div>
     </div>
     <script src="terminal.js"></script>
     <script>
-    document.querySelector('.button.red').addEventListener('click', function() {
-      window.close();
-    });
-    
-    document.querySelector('.button.yellow').addEventListener('click', function() {
-      const container = document.querySelector('.container');
-      if (container.style.height === '40px') {
-        container.style.height = '700px';
-        document.getElementById('app').style.display = 'flex';
-      } else {
-        container.style.height = '40px';
-        document.getElementById('app').style.display = 'none';
-      }
-    });
-    
-    document.querySelector('.button.green').addEventListener('click', function() {
-      const container = document.querySelector('.container');
-      if (container.style.maxWidth === '900px' && container.style.height === '700px') {
-        container.style.maxWidth = '100vw';
-        container.style.height = '100vh';
-      } else {
-        container.style.maxWidth = '900px';
-        container.style.height = '700px';
-      }
-    });
-  </script>
+      document
+        .querySelector(".button.red")
+        .addEventListener("click", function () {
+          window.close();
+        });
+
+      document
+        .querySelector(".button.yellow")
+        .addEventListener("click", function () {
+          const container = document.querySelector(".container");
+          if (container.style.height === "40px") {
+            container.style.height = "100vh";
+            document.getElementById("app").style.display = "flex";
+          } else {
+            container.style.height = "40px";
+            document.getElementById("app").style.display = "none";
+          }
+        });
+
+      document
+        .querySelector(".button.green")
+        .addEventListener("click", function () {
+          const container = document.querySelector(".container");
+          if (
+            container.style.maxWidth === "100vw" &&
+            container.style.height === "100vh"
+          ) {
+            container.style.maxWidth = "900px";
+            container.style.height = "700px";
+          } else {
+            container.style.maxWidth = "100vw";
+            container.style.height = "100vh";
+          }
+        });
+    </script>
   </body>
 </html>
