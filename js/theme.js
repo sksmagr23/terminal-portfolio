@@ -74,21 +74,36 @@ const themes = {
     border: "#006dff",
     selection: "#77216F",
   },
-  monokai: {
-    background: "#272822",
-    text: "#f8f8f2",
-    success: "#a6e22e",
-    error: "#f92672",
-    code: "#e6db74",
-    prompt: "#ae81ff",
-    secondary: "#fd971f",
-    githubStats: "#1e1f1c",
-    link: "#66d9ef",
-    linkHover: "#8be9fd",
+  github: {
+    background: "#0d1117",
+    text: "#c9d1d9",
+    success: "#3fb950",
+    error: "#f85149",
+    code: "#d2a8ff",
+    prompt: "#ffab70",
+    secondary: "#8b949e",
+    githubStats: "#161b22",
+    link: "#58a6ff",
+    linkHover: "#1f6feb",
+    inputBackground: "#21262d",
+    border: "#30363d",
+    selection: "#264f78",
+  },
+  cobalt: {
+    background: "#193549",
+    text: "#e1efff",
+    success: "#3af100",
+    error: "#ff2c6d",
+    code: "#9effff",
+    prompt: "#ffc600",
+    secondary: "#c5e478",
+    githubStats: "#191849",
+    link: "#5ccfe6",
+    linkHover: "#80fcff",
     inputBackground: "transparent",
-    border: "#3e3d32",
-    selection: "#49483e",
-  }
+    border: "#234d70",
+    selection: "#0d3a58",
+  },
 };
 
 let currentTheme = "dark";
@@ -117,17 +132,17 @@ function setTheme(theme) {
 
   document.querySelector("#app").style.backgroundColor =
     themes[theme].background;
-    
+
   updateBannerColors();
 }
 
 function updateBannerColors() {
   const bannerContainer = document.querySelector(".banner-container");
   if (!bannerContainer) return;
-  
+
   const baseColor = themes[currentTheme].success;
   const secondaryColor = themes[currentTheme].secondary;
-  
+
   const bannerLines = bannerContainer.querySelectorAll("p");
   bannerLines.forEach((line, index) => {
     line.style.color = index % 2 === 0 ? baseColor : secondaryColor;
@@ -146,12 +161,12 @@ function getAvailableThemes() {
   return Object.keys(themes);
 }
 
-export { 
-  themes, 
-  currentTheme, 
-  setTheme, 
-  updateBannerColors, 
-  getCurrentTheme, 
+export {
+  themes,
+  currentTheme,
+  setTheme,
+  updateBannerColors,
+  getCurrentTheme,
   getThemeColors,
-  getAvailableThemes 
+  getAvailableThemes,
 };
