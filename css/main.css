@@ -460,13 +460,19 @@ input:focus {
   justify-content: center;
 }
 
+@keyframes rotate-icon {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
 .tech-stack i {
-  transition: all 0.3s;
+  transition: filter 0.3s ease, transform 0.3s ease;
   cursor: pointer;
-  filter: grayscale(15%);
+  filter: grayscale(25%);
 }
 
 .tech-stack i:hover {
+  animation: rotate-icon 1.5s ease-in-out;
   transform: scale(1.1);
   filter: brightness(1.5) grayscale(0%);
 }

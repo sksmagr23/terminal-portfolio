@@ -1,5 +1,5 @@
 import { getCurrentTheme, setTheme, getThemeColors, getAvailableThemes } from './theme.js';
-
+const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 const commands = [
   "help",
   "about",
@@ -13,6 +13,7 @@ const commands = [
   "education",
   "resume",
   "echo",
+  "special",
 ];
 
 async function processCommand(value, app) {
@@ -32,6 +33,7 @@ async function processCommand(value, app) {
     createCode(app, "theme", "Change terminal theme");
     createCode(app, "echo", "Repeat whatever you type after the command.");
     createCode(app, "clear", "Clean the terminal.");
+    createCode(app, "special", "Never enter this because it will mess our entire internal system (NOT FOR BEGINNERS)");
     createText(app, "\nKeyboard shortcuts:");
     createText(app, "↑ : Navigate to previous commands");
     createText(app, "↓ : Navigate to next commands");
@@ -65,7 +67,12 @@ async function processCommand(value, app) {
       app,
       "Find source code & many more contribs on <a href='https://github.com/sksmagr23' target='_blank' class='proj'><i class='devicon-github-original mi1 fa-x'></i> GitHub</a>"
     );
-  } else if (command === "about") {
+  } else if (command === "special") {
+  createText(app, "<span class='error-text'>⚠️ Initiating security breach simulation...</span>");
+  showHackSimulation();
+  await delay(7000);
+  createText(app, "<span class='error-text'>Just for fun! Only a simulation, no real harm done. 😄</span>");
+} else if (command === "about") {
     const aboutContainer1 = document.createElement("p");
     const aboutContainer2 = document.createElement("p");
     app.appendChild(aboutContainer1);
@@ -233,6 +240,272 @@ function autocomplete(value) {
     }
   }
   return { noMatch: true };
+}
+
+function showHackSimulation() {
+  const overlay = document.createElement("div");
+  overlay.classList.add("hack-overlay");
+  const content = document.createElement("div");
+  content.classList.add("hack-content");
+  
+  const skullContainer = document.createElement("div");
+  skullContainer.classList.add("skull-container");
+  skullContainer.innerHTML = `<img src="/skull.svg" class="skull-image" />`;
+  
+  const warningBox = document.createElement("div");
+  warningBox.classList.add("warning-box");
+  warningBox.innerHTML = `
+    <div class="warning-header">YOU ARE PHISHED !</div>
+    <div class="warning-subheader">SYSTEM COMPROMISED</div>
+    <div class="warning-blinker">⚠️ ALL SECURITY PROTOCOLS BYPASSED ⚠️</div>
+  `;
+  
+  const progressContainer = document.createElement("div");
+  progressContainer.classList.add("progress-container");
+  
+  const noiseContainer = document.createElement("div");
+  noiseContainer.classList.add("noise");
+  
+  const terminalHeader = document.createElement("div");
+  terminalHeader.classList.add("terminal-header");
+  terminalHeader.innerHTML = `
+    <span class="terminal-title">BREACH_PROTOCOL.exe</span>
+    <span class="terminal-status">STATUS: ACTIVE</span>
+  `;
+  progressContainer.appendChild(terminalHeader);
+  
+  const style = document.createElement("style");
+  style.textContent = `
+    .hack-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      color: #0f0;
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      font-family: 'Courier New', monospace;
+      overflow: hidden;
+    }
+    
+    .noise {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+      opacity: 0.05;
+      pointer-events: none;
+    }
+    
+    .hack-content {
+      position: relative;
+      text-align: center;
+      max-width: 90%;
+      z-index: 1;
+    }
+    
+    .skull-container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      animation: pulse 2s infinite alternate;
+    }
+    
+    .skull-image {
+      width: 150px;
+      height: 150px;
+      filter: invert(13%) sepia(90%) saturate(7414%) hue-rotate(359deg) brightness(94%) contrast(116%) drop-shadow(0 0 10pxrgb(255, 25, 25));
+    }
+    
+    .warning-box {
+      margin: 20px 0;
+      padding: 15px;
+      border: 2px solid #ff0000;
+      box-shadow: 0 0 15px rgb(204, 255, 0), inset 0 0 15px rgb(204, 255, 0);
+      animation: glitch 0.3s infinite, borderPulse 1.5s infinite alternate;
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+    
+    .warning-header {
+      font-size: 36px;
+      font-weight: bold;
+      color: #ff0000;
+      text-shadow: 0 0 10px #ff0000;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+    }
+    
+    .warning-subheader {
+      font-size: 28px;
+      color: #ff0000;
+      text-shadow: 0 0 8px rgb(255, 0, 0);
+      margin-bottom: 15px;
+    }
+    
+    .warning-blinker {
+      font-size: 18px;
+      color: #0f0;
+      text-shadow: 0 0 5px #0f0;
+      animation: blink 0.8s infinite;
+    }
+    
+    .terminal-header {
+      display: flex;
+      justify-content: space-between;
+      background: #0a0a0a;
+      border-bottom: 1px solid #0f0;
+      padding: 5px 10px;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+    
+    .terminal-title {
+      color: #0f0;
+      font-weight: bold;
+    }
+    
+    .terminal-status {
+      color: #ff3333;
+      animation: statusBlink 1s infinite;
+    }
+    
+    .progress-container {
+      text-align: left;
+      margin-top: 10px;
+      background-color: rgba(0, 20, 0, 0.8);
+      padding: 0;
+      border-radius: 5px;
+      border: 1px solid #0f0;
+      box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+      width: 100%;
+      max-width: 600px;
+      overflow: hidden;
+    }
+    
+    .progress-item {
+      padding: 8px 15px;
+      margin: 0;
+      border-bottom: 1px dotted rgba(0, 255, 0, 0.3);
+      font-family: 'Courier New', monospace;
+      position: relative;
+    }
+    
+    .progress-item:before {
+      content: ">";
+      color: #0f0;
+      margin-right: 10px;
+    }
+    
+    @keyframes statusBlink {
+      0%, 49% { color: #ff3333; }
+      50%, 100% { color: #990000; }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.05); }
+    }
+    
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0.3; }
+    }
+    
+    @keyframes borderPulse {
+      0% { box-shadow: 0 0 15px #ff0000, inset 0 0 15px #ff0000; }
+      100% { box-shadow: 0 0 25px #ff0000, inset 0 0 25px #ff0000; }
+    }
+    
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
+    }
+    
+    .scan-line {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0) 0%,
+        rgba(0, 255, 0, 0.1) 50%,
+        rgba(0, 0, 0, 0) 100%
+      );
+      animation: scanline 6s linear infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+    
+    @keyframes scanline {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(100%); }
+    }
+  `;
+  
+  document.head.appendChild(style);
+  
+  const progressItems = [
+    "Bypassing system firewall... [COMPLETE]",
+    "Accessing root directory... [COMPLETE]",
+    "Disabling security protocols... [COMPLETE]",
+    "Exfiltrating personal data (13.7GB)... [76%]",
+    "Installing persistent backdoor via kernel exploit... [42%]",
+    "Corrupting system files and boot sector... [18%]",
+    "Setting up remote access trojan... [INITIALIZING]"
+  ];
+  
+  const scanLine = document.createElement("div");
+  scanLine.classList.add("scan-line");
+  overlay.appendChild(scanLine);
+  overlay.appendChild(noiseContainer);
+  
+  content.appendChild(skullContainer);
+  content.appendChild(warningBox);
+  content.appendChild(progressContainer);
+  overlay.appendChild(content);
+  document.body.appendChild(overlay);
+  
+  progressItems.forEach((item, index) => {
+    setTimeout(() => {
+      const p = document.createElement("p");
+      p.textContent = item;
+      p.classList.add("progress-item");
+      progressContainer.appendChild(p);
+      
+      // Add typing sound effect
+      const audio = new Audio();
+      audio.volume = 0.5;
+      audio.src = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
+      audio.play();
+      
+    }, index * 500);
+  });
+  
+  setTimeout(() => {
+    overlay.style.animation = "none";
+    overlay.style.opacity = "1";
+    setTimeout(() => {
+      overlay.style.transition = "opacity 0.3s ease";
+      overlay.style.opacity = "0";
+      setTimeout(() => {
+        document.body.removeChild(overlay);
+        document.head.removeChild(style);
+      }, 400);
+    }, 400);
+  }, 7000);
 }
 
 export { processCommand, commands, autocomplete, createText, createCode };
