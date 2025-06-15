@@ -1,12 +1,12 @@
 const themes = {
   dark: {
-    background: "#191919",
+    background: "#1d1d1d",
     text: "#f8f8f8",
     success: "#29ff29",
     error: "#ff1b33",
     code: "#0bb0fe",
     prompt: "#0ef36a",
-    secondary: "#0ef379",
+    secondary: "#29ff29",
     githubStats: "#151414",
     link: "#4ad0fd",
     linkHover: "#29ff29",
@@ -60,7 +60,7 @@ const themes = {
     selection: "#3d0862",
   },
   ubuntu: {
-    background: "#2c001e",
+    background: "#2f001e",
     text: "#ffffff",
     success: "#29ff29",
     error: "#FF5252",

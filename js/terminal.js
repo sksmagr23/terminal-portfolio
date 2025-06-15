@@ -5,7 +5,7 @@ const app = document.querySelector("#app");
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 const commandHistory = [];
 let historyIndex = -1;
-let terminalPrefix = "sksm_agr";
+let user = "sksm_agr";
 
 app.addEventListener("keydown", async function (event) {
   const input = document.querySelector("input");
@@ -71,17 +71,17 @@ app.addEventListener("click", function (event) {
   if (input) input.focus();
 });
 
-async function open_terminal() {
+async function Terminal() {
   setTheme(getCurrentTheme());
   await delay(200);
-  await createAnimatedBanner();
+  await createBanner();
   await delay(200);
   await typeText("Starting terminal server...");
 
   const loadingP = document.createElement("p");
   loadingP.innerHTML = "<span class='loading-indicator'></span>";
   app.appendChild(loadingP);
-  await delay(500);
+  await delay(400);
   app.removeChild(loadingP);
 
   await typeText(
@@ -97,7 +97,7 @@ async function typeText(text) {
 
   return new Promise((resolve) => {
     let i = 0;
-    const speed = 80;
+    const speed = 30;
 
     function type() {
       if (i < text.length) {
@@ -114,7 +114,7 @@ async function typeText(text) {
   });
 }
 
-async function createAnimatedBanner() {
+async function createBanner() {
   const desktopBannerLines = [
     "┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓",
     "┃                                                               ┃",
@@ -186,9 +186,9 @@ function new_line() {
   promptSpan.setAttribute("class", "path");
   
   if (window.innerWidth < 400) {
-    promptSpan.textContent = `${terminalPrefix}$`;
+    promptSpan.textContent = `${user}$`;
   } else {
-    promptSpan.textContent = `${terminalPrefix}`;
+    promptSpan.textContent = `${user}`;
 
     const span1 = document.createElement("span");
     span1.textContent = "@";
@@ -246,4 +246,4 @@ function updateResponsiveElements() {
   }
 }
 
-open_terminal();
+Terminal();

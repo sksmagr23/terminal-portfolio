@@ -69,7 +69,7 @@ async function processCommand(value, app) {
     );
   } else if (command === "special") {
   createText(app, "<span class='error-text'>⚠️ Initiating security breach simulation...</span>");
-  showHackSimulation();
+  HackSimulation();
   await delay(7000);
   createText(app, "<span class='error-text'>Just for fun! Only a simulation, no real harm done. 😄</span>");
 } else if (command === "about") {
@@ -195,7 +195,7 @@ async function processCommand(value, app) {
     createText(app, "My Resume:");
     createText(app, `
   <div class="resume-section">
-    <a href="/Resume.pdf" target="_blank" class="resume-download-btn">view PDF Resume</a>
+    <a href="/assets/Resume.pdf" target="_blank" class="resume-download-btn">view PDF Resume</a>
   </div>
     `);
   } else if (value === "") {
@@ -242,7 +242,7 @@ function autocomplete(value) {
   return { noMatch: true };
 }
 
-function showHackSimulation() {
+function HackSimulation() {
   const overlay = document.createElement("div");
   overlay.classList.add("hack-overlay");
   const content = document.createElement("div");
@@ -250,7 +250,7 @@ function showHackSimulation() {
   
   const skullContainer = document.createElement("div");
   skullContainer.classList.add("skull-container");
-  skullContainer.innerHTML = `<img src="/skull.svg" class="skull-image" />`;
+  skullContainer.innerHTML = `<img src="/assets/skull.svg" class="skull-image" />`;
   
   const warningBox = document.createElement("div");
   warningBox.classList.add("warning-box");
@@ -485,7 +485,6 @@ function showHackSimulation() {
       p.classList.add("progress-item");
       progressContainer.appendChild(p);
       
-      // Add typing sound effect
       const audio = new Audio();
       audio.volume = 0.5;
       audio.src = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=";
