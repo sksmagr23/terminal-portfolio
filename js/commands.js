@@ -39,18 +39,18 @@ async function processCommand(value, app) {
     createText(app, "↓ : Navigate to next commands");
     createText(app, "Tab: Autocomplete commands");
   } else if (command === "projects") {
-    createText(
-      app,
-      "<a href='https://weather-goapi.netlify.app/' target='_blank' class='proj'>⁍ GO Weather API</a> - A weather application using Go backend"
-    );
+    // createText(
+    //   app,
+    //   "<a href='https://weather-goapi.netlify.app/' target='_blank' class='proj'>⁍ GO Weather API</a> - A weather application using Go backend"
+    // );
     createText(
       app,
       "<a href='https://codeexchange-3s2g.onrender.com/' target='_blank' class='proj'>⁍ CodeExchange</a> - Prototype of stack overflow with Q&A functionality"
     );
-    createText(
-      app,
-      "<a href='https://todo-react-app-five-kappa.vercel.app/' target='_blank' class='proj'>⁍ TODO App</a> - React-based task management application"
-    );
+    // createText(
+    //   app,
+    //   "<a href='https://todo-react-app-five-kappa.vercel.app/' target='_blank' class='proj'>⁍ TODO App</a> - React-based task management application"
+    // );
     createText(
       app,
       "<a href='https://github.com/sksmagr23/restaurant-service' target='_blank' class='proj'>⁍ Restaurant E-commerce</a> - Built with Django framework"
@@ -80,14 +80,14 @@ async function processCommand(value, app) {
 
     new Typed(aboutContainer1, {
       strings: [
-        "Hey there! 👋 I'm <strong>Saksham Agrawal</strong>, Pre-Final Year at IIT (BHU) Varanasi with an endless curiosity for web development. From designing intuitive user experiences to engineering powerful backends, I'm all about bringing the best of both worlds to life :D",
+        "Hey there! 👋 I'm <strong>Saksham</strong>, a final Year student at IIT BHU passionate about building intelligent Agents, scalable backend systems, and automation platforms. I enjoy turning complex workflows into seamless user experiences powered by modern LLMs and real-world integrations :D",
       ],
       typeSpeed: 20,
       showCursor: false,
       onComplete: () => {
         new Typed(aboutContainer2, {
           strings: [
-            "When I'm not coding, you'll probably find me exploring the latest tech trends, figuring out how to break and rebuild things just for fun. I'm always excited to collaborate on cool projects, brainstorm wild ideas, and turn them into something real and impactful. So, if you're into pushing boundaries, let's connect and create something epic together! 💡💻",
+            "Lately, I've been working with AI agent frameworks, MCP, CRM automations, and multi-agent workflows—building systems that don't just answer questions, but take actions. Whether it's orchestrating autonomous agents, integrating enterprise APIs, or designing production-ready backends, I love creating stuff that solves real problems. Let's build the next generation of intelligent applications together. 🚀",
           ],
           typeSpeed: 20,
           showCursor: false,
@@ -98,14 +98,14 @@ async function processCommand(value, app) {
     createText(app, "My tech stack:");
     createText(
       app,
-      "<div class='tech-stack'><i class='devicon-html5-plain g fa-2x white' title='HTML5'></i> <i class='devicon-css3-plain g fa-12x white mi1' title='CSS3'></i><i class='devicon-javascript-plain g fa-12x white mi' title='JavaScript'></i><i class='devicon-react-original g fa-2x white mi' title='React'></i><i class='devicon-nextjs-original-wordmark g fa-2x mi' title='Next.js'></i><i class='devicon-nodejs-plain g fa-2x mi white' title='Node.js'></i><i class='devicon-python-plain g fa-2x mi white' title='Python'></i><i class='devicon-go-plain fa-2x g mi' title='Go'></i><i class='devicon-cplusplus-plain g fa-2x mi' title='C++'></i><i class='devicon-git-plain g fa-2x mi white' title='Git'></i><i class='devicon-linux-plain g fa-2x mi white' title='Linux'></i></div>"
+      "<div class='tech-stack'><i class='devicon-html5-plain g fa-2x white' title='HTML5'></i> <i class='devicon-css3-plain g fa-12x white mi1' title='CSS3'></i><i class='devicon-javascript-plain g fa-12x white mi' title='JavaScript'></i><i class='devicon-react-original g fa-2x white mi' title='React'></i><i class='devicon-nextjs-original-wordmark g fa-2x mi' title='Next.js'></i><i class='devicon-nodejs-plain g fa-2x mi white' title='Node.js'></i><i class='devicon-python-plain g fa-2x mi white' title='Python'></i><i class='devicon-go-plain fa-2x g mi' title='Go'></i><i class='devicon-cplusplus-plain g fa-2x mi' title='C++'></i><i class='devicon-fastapi-plain g fa-2x mi' title='FastAPI'></i><i class='devicon-docker-plain g fa-2x mi' title='Docker'></i><i class='devicon-git-plain g fa-2x mi white' title='Git'></i><img src='/assets/gemini.svg' title='Gemini' class='mi' style='width:32px;height:32px;vertical-align:middle;'/></div>"
     );
   } else if (command === "stats") {
     createText(app, "GitHub Stats:");
     const currentThemeColors = getThemeColors();
     createText(
       app,
-      `<img class='github-stats' src=https://github-readme-stats.vercel.app/api?username=sksmagr23&count_private=true&show_icons=true&hide_border=true&hide_rank=true&include_all_commits=true&show=prs_merged_percentage&hide_title=true&text_color=${currentThemeColors.success.replace(
+      `<img class='github-stats' src=https://github-stats-extended.vercel.app/api?username=sksmagr23&count_private=true&show_icons=true&hide_border=true&hide_rank=true&include_all_commits=true&show=prs_merged_percentage&hide_title=true&text_color=${currentThemeColors.success.replace(
         "#",
         ""
       )}&bg_color=45,${currentThemeColors.githubStats.replace("#", "")},${currentThemeColors.githubStats.replace(
@@ -113,6 +113,22 @@ async function processCommand(value, app) {
         ""
       )}></img>`
     );
+    createText(
+  app,
+  `<img class='github-activity-graph' style="width:100%; max-width:900px; height:auto;" src="https://github-readme-activity-graph.vercel.app/graph?username=sksmagr23&bg_color=${currentThemeColors.githubStats.replace(
+    "#",
+    ""
+  )}&color=${currentThemeColors.success.replace(
+    "#",
+    ""
+  )}&line=${currentThemeColors.success.replace(
+    "#",
+    ""
+  )}&point=${currentThemeColors.success.replace(
+    "#",
+    ""
+  )}&hide_border=true" />`
+);
   } else if (command === "connect") {
     createText(
       app,
@@ -124,7 +140,7 @@ async function processCommand(value, app) {
     );
     createText(
       app,
-      "<a href='https://www.instagram.com/saksham_verse_24/' target='_blank' class='link2'> <i class='fa-brands fa-instagram'></i> instagram.com/saksham_verse_24</a>"
+      "<a href='https://www.instagram.com/sksmagr18' target='_blank' class='link2'> <i class='fa-brands fa-instagram'></i> instagram.com/sksmagr18</a>"
     );
   } else if (command === "date") {
     const now = new Date();
