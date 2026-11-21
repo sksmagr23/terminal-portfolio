@@ -319,7 +319,6 @@ async function processCommand(value, app) {
 </div>
     `);
   } else if (command === "resume") {
-    createText(app, "My Resume:");
     createText(app, `
   <div class="resume-section">
     <a href="/assets/Resume.pdf" target="_blank" class="resume-download-btn">view PDF Resume</a>
