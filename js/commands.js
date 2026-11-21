@@ -33,7 +33,7 @@ async function processCommand(value, app) {
     createCode(app, "theme", "Change terminal theme");
     createCode(app, "echo", "Repeat whatever you type after the command.");
     createCode(app, "clear", "Clean the terminal.");
-    createCode(app, "special", "Never enter this because it will mess our entire internal system (NOT FOR BEGINNERS)");
+    createCode(app, "special", "Never enter this because it will mess my entire internal system (NOT FOR BEGINNERS)");
     createText(app, "\nKeyboard shortcuts:");
     createText(app, "↑ : Navigate to previous commands");
     createText(app, "↓ : Navigate to next commands");
