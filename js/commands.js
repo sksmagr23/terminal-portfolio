@@ -3,8 +3,11 @@ const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 const commands = [
   "init",
   "about",
+  "internships",
   "tools",
+  "skills",
   "projects",
+  "achievements",
   "stats",
   "connect",
   "date",
@@ -23,8 +26,10 @@ async function processCommand(value, app) {
   if (command === "init") {
     createText(app, "Available commands:");
     createCode(app, "about", "Who am I and what do I do.");
-    createCode(app, "tools", "My Tech Stack.");
+    createCode(app, "internships", "My internship experience.");
+    createCode(app, "tools", "My Tech Stack & Skills");
     createCode(app, "projects", "My dev projects, leave a star if you like them ;)");
+    createCode(app, "achievements", "My honours and achievements.");
     createCode(app, "stats", "My Github contribution stats :)");
     createCode(app, "connect", "All my social networks. Follow me there :D");
     createCode(app, "education", "My educational background.");
@@ -38,35 +43,94 @@ async function processCommand(value, app) {
     createText(app, "↑ : Navigate to previous commands");
     createText(app, "↓ : Navigate to next commands");
     createText(app, "Tab: Autocomplete commands");
+  } else if (command === "internships" || command === "internship" || command === "experience") {
+    createText(app, `
+<div class="internship-item">
+  <div class="edu-year">May 2026 - July 2026</div>
+  <div class="edu-details">
+    <div class="edu-degree">Software Developer Intern — Irisidea</div>
+    <ul class="internship-bullets">
+      <li>Built agentic CRM workflows using <strong>Pydantic</strong> and <strong>Google ADK</strong> for context-aware customer management.</li>
+      <li>Integrated <strong>Zoho CRM</strong> with agent tools for lead CRUD, email sending, and one-time &amp; recurring email job scheduling.</li>
+      <li>Engineered <strong>dynamic UI rendering</strong> using structured data for intent-driven agent interactions and CRM analytics.</li>
+    </ul>
+    <div class="internship-tags">
+      <span class="tech-tag">FastAPI</span>
+      <span class="tech-tag">Google ADK</span>
+      <span class="tech-tag">Zoho CRM</span>
+      <span class="tech-tag">Agentic AI</span>
+      <span class="tech-tag">Dynamic UI</span>
+    </div>
+  </div>
+</div>
+    `);
   } else if (command === "projects") {
-    // createText(
-    //   app,
-    //   "<a href='https://weather-goapi.netlify.app/' target='_blank' class='proj'>⁍ GO Weather API</a> - A weather application using Go backend"
-    // );
+    createText(app, `
+<div class="projects-list">
+  <div class="project-card">
+    <div class="project-header">
+      <a href="https://github.com/sksmagr23/QueryPilot" target="_blank" class="project-title">⁍ QueryPilot</a>
+      <div class="project-links">
+        <a href="https://github.com/sksmagr23/QueryPilot" target="_blank" class="proj-link">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="project-desc">An Agentic analytics platform that translates natural-language business questions into validated SQL queries, estimates database execution cost, runs queries safely on a read-only connection, and delivers interactive charts, queries, and data-backed insights</div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-header">
+      <a href="https://github.com/sksmagr23/url-shortener" target="_blank" class="project-title">⁍ URL Management Service (GoFr SOC'25)</a>
+      <div class="project-links">
+        <a href="https://github.com/sksmagr23/url-shortener" target="_blank" class="proj-link">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="project-desc">Gofr based high-performance backend service for URL shortening, link lifecycle management, QR generation, click analytics, authentication, and developer automation</div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-header">
+      <a href="https://github.com/sksmagr23/shannon_frontend" target="_blank" class="project-title">⁍ AI-Powered Renewable Energy Forecasting System</a>
+      <div class="project-links">
+        <a href="https://github.com/sksmagr23/shannon_frontend" target="_blank" class="proj-link">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="project-desc">Web-based AI-powered renewable energy forecasting system utilizing GRU and XGBoost to accurately predict solar and wind energy generation from historical weather data, achieving an R² score of 0.7359</div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-header">
+      <a href="https://codeexchange-3s2g.onrender.com/" target="_blank" class="project-title">⁍ CodeExchange</a>
+      <div class="project-links">
+        <a href="https://codeexchange-3s2g.onrender.com/" target="_blank" class="proj-link">Live ↗</a>
+      </div>
+    </div>
+    <div class="project-desc">A simplified web application that replicates core functionalities of Stack Overflow, enabling users to post questions, provide answers, and engage in discussions</div>
+  </div>
+
+  <div class="project-card">
+    <div class="project-header">
+      <a href="https://github.com/sksmagr23/restaurant-service" target="_blank" class="project-title">⁍ Restaurant E-commerce</a>
+      <div class="project-links">
+        <a href="https://github.com/sksmagr23/restaurant-service" target="_blank" class="proj-link">GitHub ↗</a>
+      </div>
+    </div>
+    <div class="project-desc">Django-based restaurant management web application featuring user authentication, interactive menu browsing, cart management, seamless checkout, order summaries, order history, and personalized user profiles</div>
+  </div>
+</div>
+    `);
     createText(
       app,
-      "<a href='https://codeexchange-3s2g.onrender.com/' target='_blank' class='proj'>⁍ CodeExchange</a> - Prototype of stack overflow with Q&A functionality"
+      "Find source code &amp; many more contribs on <a href='https://github.com/sksmagr23' target='_blank' class='proj'><i class='devicon-github-original mi1 fa-x'></i> GitHub</a>"
     );
-    // createText(
-    //   app,
-    //   "<a href='https://todo-react-app-five-kappa.vercel.app/' target='_blank' class='proj'>⁍ TODO App</a> - React-based task management application"
-    // );
-    createText(
-      app,
-      "<a href='https://github.com/sksmagr23/restaurant-service' target='_blank' class='proj'>⁍ Restaurant E-commerce</a> - Built with Django framework"
-    );
-    createText(
-      app,
-      "<a href='https://discord.com/oauth2/authorize?client_id=1316247901420126218' target='_blank' class='proj'>⁍ Discord Bot</a> - A custom Discord bot with various features"
-    );
-    createText(
-      app,
-      "<a href='https://shannonntpc.vercel.app/' target='_blank' class='proj'>⁍ AI Renewable Energy Prediction</a> - Predicting energy outputs with ML"
-    );
-    createText(
-      app,
-      "Find source code & many more contribs on <a href='https://github.com/sksmagr23' target='_blank' class='proj'><i class='devicon-github-original mi1 fa-x'></i> GitHub</a>"
-    );
+  } else if (command === "achievements" || command === "achievement") {
+    createText(app, `
+<div class="achievements-list">
+  <div class="achievement-item"><span class="achievement-badge">🏆</span><span>Secured <strong>2nd position</strong> in the <strong>Hack It Out</strong> hackathon at <strong>Technex '25 (IIT BHU)</strong>.</span></div>
+  <div class="achievement-item"><span class="achievement-badge">🚀</span><span><strong>National Semi-Finalist</strong> at <strong>Flipkart GRiD 8.0</strong> (SDE Track).</span></div>
+  <div class="achievement-item"><span class="achievement-badge">🌟</span><span>Selected among the <strong>top 38 contributors</strong> from 109 proposals for <strong>GoFr Summer of Code 2025</strong>, Templates Track.</span></div>
+  <div class="achievement-item"><span class="achievement-badge">🎓</span><span>Received the <strong>Achievers Award</strong> as <strong>Science Stream Topper</strong> in XII board (Sub-Topper: Chemistry &amp; Maths).</span></div>
+</div>
+    `);
   } else if (command === "special") {
   createText(app, "<span class='error-text'>⚠️ Initiating security breach simulation...</span>");
   HackSimulation();
@@ -94,11 +158,58 @@ async function processCommand(value, app) {
         });
       },
     });
-  } else if (command === "tools") {
-    createText(app, "My tech stack:");
+  } else if (command === "tools" || command === "skills") {
+    const accentHex = getThemeColors().success.replace("#", "");
+    createText(app, "My tech stack &amp; skills:");
     createText(
       app,
-      "<div class='tech-stack'><i class='devicon-html5-plain g fa-2x white' title='HTML5'></i> <i class='devicon-css3-plain g fa-12x white mi1' title='CSS3'></i><i class='devicon-javascript-plain g fa-12x white mi' title='JavaScript'></i><i class='devicon-react-original g fa-2x white mi' title='React'></i><i class='devicon-nextjs-original-wordmark g fa-2x mi' title='Next.js'></i><i class='devicon-nodejs-plain g fa-2x mi white' title='Node.js'></i><i class='devicon-python-plain g fa-2x mi white' title='Python'></i><i class='devicon-go-plain fa-2x g mi' title='Go'></i><i class='devicon-cplusplus-plain g fa-2x mi' title='C++'></i><i class='devicon-fastapi-plain g fa-2x mi' title='FastAPI'></i><i class='devicon-docker-plain g fa-2x mi' title='Docker'></i><i class='devicon-git-plain g fa-2x mi white' title='Git'></i><img src='/assets/gemini.svg' title='Gemini' class='mi' style='width:32px;height:32px;vertical-align:middle;'/></div>"
+      `
+<div class="tech-category">
+  <div class="tech-category-title">Languages</div>
+  <div class="tech-stack">
+    <span class="tech-item" title="C++"><i class="devicon-cplusplus-plain g fa-2x"></i><span class="tech-label">C++</span></span>
+    <span class="tech-item" title="Python"><i class="devicon-python-plain g fa-2x"></i><span class="tech-label">Python</span></span>
+    <span class="tech-item" title="JavaScript"><i class="devicon-javascript-plain g fa-2x"></i><span class="tech-label">JavaScript</span></span>
+    <span class="tech-item" title="TypeScript"><i class="devicon-typescript-plain g fa-2x"></i><span class="tech-label">TypeScript</span></span>
+    <span class="tech-item" title="Go"><i class="devicon-go-plain g fa-2x"></i><span class="tech-label">Go</span></span>
+    <span class="tech-item" title="SQL"><img src="https://api.iconify.design/tabler/sql.svg?color=%23${accentHex}" alt="SQL" class="tech-icon" /><span class="tech-label">SQL</span></span>
+  </div>
+</div>
+<div class="tech-category">
+  <div class="tech-category-title">Technologies</div>
+  <div class="tech-stack">
+    <span class="tech-item" title="HTML5"><i class="devicon-html5-plain g fa-2x"></i><span class="tech-label">HTML5</span></span>
+    <span class="tech-item" title="CSS3"><i class="devicon-css3-plain g fa-2x"></i><span class="tech-label">CSS3</span></span>
+    <span class="tech-item" title="React.js"><i class="devicon-react-original g fa-2x"></i><span class="tech-label">React.js</span></span>
+    <span class="tech-item" title="Next.js"><i class="devicon-nextjs-original-wordmark g fa-2x"></i><span class="tech-label">Next.js</span></span>
+    <span class="tech-item" title="Node.js"><i class="devicon-nodejs-plain g fa-2x"></i><span class="tech-label">Node.js</span></span>
+    <span class="tech-item" title="Express.js"><i class="devicon-express-original g fa-2x"></i><span class="tech-label">Express.js</span></span>
+    <span class="tech-item" title="EJS"><img src="https://cdn.simpleicons.org/ejs/${accentHex}" alt="EJS" class="tech-icon" /><span class="tech-label">EJS</span></span>
+    <span class="tech-item" title="Tailwind CSS"><i class="devicon-tailwindcss-plain g fa-2x"></i><span class="tech-label">Tailwind</span></span>
+    <span class="tech-item" title="FastAPI"><i class="devicon-fastapi-plain g fa-2x"></i><span class="tech-label">FastAPI</span></span>
+    <span class="tech-item" title="GoFr"><img src="https://gofr.dev/favicon.ico" alt="GoFr" class="tech-icon" /><span class="tech-label">GoFr</span></span>
+    <span class="tech-item" title="LangGraph"><img src="https://cdn.simpleicons.org/langgraph/${accentHex}" alt="LangGraph" class="tech-icon" /><span class="tech-label">LangGraph</span></span>
+    <span class="tech-item" title="Google ADK"><img src="https://google.github.io/adk-docs/assets/agent-development-kit.png" alt="Google ADK" class="tech-icon" /><span class="tech-label">Google ADK</span></span>
+    <span class="tech-item" title="Pydantic"><img src="https://cdn.simpleicons.org/pydantic/${accentHex}" alt="Pydantic" class="tech-icon" /><span class="tech-label">Pydantic</span></span>
+    <span class="tech-item" title="Gemini"><img src="/assets/gemini.svg" alt="Gemini" class="tech-icon" /><span class="tech-label">Gemini</span></span>
+  </div>
+</div>
+<div class="tech-category">
+  <div class="tech-category-title">Tools &amp; Platforms</div>
+  <div class="tech-stack">
+    <span class="tech-item" title="Git"><i class="devicon-git-plain g fa-2x"></i><span class="tech-label">Git</span></span>
+    <span class="tech-item" title="GitHub"><i class="devicon-github-original g fa-2x"></i><span class="tech-label">GitHub</span></span>
+    <span class="tech-item" title="Docker"><i class="devicon-docker-plain g fa-2x"></i><span class="tech-label">Docker</span></span>
+    <span class="tech-item" title="Postman"><i class="devicon-postman-plain g fa-2x"></i><span class="tech-label">Postman</span></span>
+    <span class="tech-item" title="Linux"><i class="devicon-linux-plain g fa-2x"></i><span class="tech-label">Linux</span></span>
+    <span class="tech-item" title="MongoDB"><i class="devicon-mongodb-plain g fa-2x"></i><span class="tech-label">MongoDB</span></span>
+    <span class="tech-item" title="Firebase"><i class="devicon-firebase-plain g fa-2x"></i><span class="tech-label">Firebase</span></span>
+    <span class="tech-item" title="PostgreSQL"><i class="devicon-postgresql-plain g fa-2x"></i><span class="tech-label">PostgreSQL</span></span>
+    <span class="tech-item" title="Redis"><i class="devicon-redis-plain g fa-2x"></i><span class="tech-label">Redis</span></span>
+    <span class="tech-item" title="Vercel"><i class="devicon-vercel-original g fa-2x"></i><span class="tech-label">Vercel</span></span>
+  </div>
+</div>
+      `
     );
   } else if (command === "stats") {
     createText(app, "GitHub Stats:");
@@ -140,7 +251,7 @@ async function processCommand(value, app) {
     );
     createText(
       app,
-      "<a href='https://www.instagram.com/sksmagr18' target='_blank' class='link2'> <i class='fa-brands fa-instagram'></i> instagram.com/sksmagr18</a>"
+      "<a href='https://www.instagram.com/sksmagr18' target='_blank' class='link2'><svg xmlns='http://www.w3.org/2000/svg' width='1em' height='1em' viewBox='0 0 24 24' fill='currentColor' style='vertical-align:-0.15em;'><path d='M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z'/></svg> instagram.com/sksmagr18</a>"
     );
   } else if (command === "date") {
     const now = new Date();
