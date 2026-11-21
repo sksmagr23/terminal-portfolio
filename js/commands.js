@@ -1,7 +1,7 @@
 import { getCurrentTheme, setTheme, getThemeColors, getAvailableThemes } from './theme.js';
 const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 const commands = [
-  "help",
+  "init",
   "about",
   "tools",
   "projects",
@@ -20,7 +20,7 @@ async function processCommand(value, app) {
   const args = value.split(" ");
   const command = args[0].toLowerCase();
 
-  if (command === "help") {
+  if (command === "init") {
     createText(app, "Available commands:");
     createCode(app, "about", "Who am I and what do I do.");
     createCode(app, "tools", "My Tech Stack.");
@@ -195,7 +195,7 @@ async function processCommand(value, app) {
 <div class="education-item">
   <div class="edu-year">2023 - Present</div>
   <div class="edu-details">
-    <div class="edu-degree">B.Tech in Chemical Engineering</div>
+    <div class="edu-degree">B.Tech in Chemical Engineering & Technology</div>
     <div class="edu-school">Indian Institute of Technology (BHU) Varanasi</div>
   </div>
 </div>
@@ -219,7 +219,7 @@ async function processCommand(value, app) {
   } else {
     createText(
       app,
-      `Command not found: ${value}. Run 'help' for available commands.`,
+      `Command not found: ${value}. Run 'init' for available commands.`,
       "error"
     );
   }

@@ -85,7 +85,7 @@ async function Terminal() {
   app.removeChild(loadingP);
 
   await typeText(
-    "<span class='success-text'>We are online.</span> Type 'help' to see list of available commands."
+    "<span class='success-text'>We are online.</span> Type 'init' to see list of available commands."
   );
   await delay(300);
   new_line();
@@ -125,7 +125,7 @@ async function createBanner() {
     "┃   ███████║██║  ██║██║  ██╗███████║██║  ██║██║  ██║██║ ╚═╝ ██║ ┃",
     "┃   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝     ╚═╝ ┃",
     "┃                                                               ┃",
-    "┃   Terminal Portfolio • v2025.1                    Type 'help' ┃",
+    "┃   Terminal Portfolio • v2026.1                    Type 'init' ┃",
     "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
   ];
 
@@ -139,7 +139,7 @@ async function createBanner() {
     "┃   ███████║██║  ██╗███████║██║ ╚═╝ ██║   ┃",
     "┃   ╚══════╝╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝   ┃",
     "┃                                         ┃",
-    "┃   Terminal v2025.1          Type 'help' ┃",
+    "┃   Terminal v2026.1          Type 'init' ┃",
     "┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛"
   ];
 
